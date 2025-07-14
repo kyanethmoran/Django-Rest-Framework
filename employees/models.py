@@ -1,3 +1,11 @@
 from django.db import models
 
-# Create your models here.
+#create class based employee model
+class Employee(models.Model):
+    #give the model a few data points to work with later
+    emp_id = models.CharField(max_length=20)
+    emp_name = models.CharField(max_length=50)
+    designation = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.emp_name
