@@ -51,7 +51,7 @@ def studentsView(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 #get a single object primary key based operation
-#This is for the class based views
+#This is for the function based views
 @api_view(['GET','PUT', 'DELETE'])
 def studentDetailView(request, pk):
     try:
@@ -78,7 +78,7 @@ def studentDetailView(request, pk):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-#class for employees to get all employees and post an employee
+#class based views for employees to get all employees and post an employee
 class Employees(APIView):
     #create a member function for each http request
     def get(self, request):
