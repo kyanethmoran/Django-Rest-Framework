@@ -7,5 +7,6 @@ urlpatterns = [
     path('students/<int:pk>/', views.studentDetailView),
 
     #employee model paths (as a class based view)
-    path('employees/', views.Employees.as_view())
+    path('employees/', views.Employees.as_view()),
+    path('employees/<int:pk>/', views.EmployeeDetail.as_view())
 ]
