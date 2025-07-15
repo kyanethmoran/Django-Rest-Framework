@@ -8,6 +8,7 @@ from rest_framework.decorators import api_view
 #for class based employee view
 from rest_framework.views import APIView
 from employees.models import Employee
+from django.http import Http404
 
 
 # Create your views here.
@@ -76,7 +77,8 @@ def studentDetailView(request, pk):
     elif request.method == 'DELETE':
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
+
+#class for employees to get all employees and post an employee
 class Employees(APIView):
     #create a member function for each http request
     def get(self, request):
@@ -92,3 +94,17 @@ class Employees(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+#class for employeeDetail to get put delete specific employee detail individually
+class EmployeeDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Employee.objects.get(pk=pk)
+        except Employee.DoesNotExist:
+            #need to import Http404 from django
+            raise Http404
+    
+    def get(self, request, pk):
+        employee = self.get_object(pk)
+        serializer = EmployeeSerializer(employee)
+        return Response(serializer.data, status=status.HTTP_200_OK)
