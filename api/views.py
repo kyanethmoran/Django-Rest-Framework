@@ -124,7 +124,7 @@ def studentDetailView(request, pk):
 #         employee = self.get_object(pk)
 #         employee.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
-
+#------------------------------------------------------------------------------------------------
 #using mixins to handle the employees and employeeDetail
 class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Employee.objects.all()
@@ -136,6 +136,16 @@ class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     def post(self, request):
         return self.create(request)
 
-#pass this for now while i ensure the top works so i dont get errors from employeeDeatil being commented out
-class EmployeeDetail(generics.GenericAPIView):
-    pass
+#using mixings to GET PUT DELETE the individuals employeeDetails
+class EmployeeDetail( mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+    def get(self, request, pk):
+        return self.retrieve(request, pk)
+    
+    def put(self, request, pk):
+        return self.update(request, pk)
+    
+    def delete(self, request, pk):
+        return self.destroy(request, pk)
