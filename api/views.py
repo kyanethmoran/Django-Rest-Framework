@@ -170,10 +170,18 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'pk'
 """
 # ---------------------------------------------------------------------------------------------------
+#using viewsets.ViewSet
 class EmployeeViewset(viewsets.ViewSet):
     def list(self, request):
         queryset = Employee.objects.all()
         serializer = EmployeeSerializer(queryset, many = True)
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
+    def create(self, request):
+        serializer = EmployeeSerializer(data = request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
   
