@@ -4,9 +4,9 @@ from . import views
 from rest_framework.routers import DefaultRouter
 
 
-#for working with viewsets we need routers
-router = DefaultRouter
-router.register('employees', views.EmployeeViewset)
+#for working with viewsets.Viewset we need routers
+router = DefaultRouter()
+router.register('employees', views.EmployeeViewset, basename='employee')
 
 urlpatterns = [
     #student model paths (as a function based view)

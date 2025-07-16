@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 from employees.models import Employee
 from django.http import Http404
 #for using mixins with employee and employee detail
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, viewsets
 
 
 # Create your views here.
@@ -157,7 +157,7 @@ class EmployeeDetail( mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins
 """
 # -------------------------------------------------------------------------------------------------
 #this code snippet is for using generics
-# """
+"""
 #using generics ListCreateAPIView
 class Employees(generics.ListCreateAPIView):
     queryset = Employee.objects.all()
@@ -168,5 +168,10 @@ class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
     lookup_field = 'pk'
-# """
+"""
 # ---------------------------------------------------------------------------------------------------
+class EmployeeViewset(viewsets.ViewSet):
+    def list(self, request):
+        queryset = Employee.objects.all()
+        serializer = EmployeeSerializer(queryset, many = True)
+        return Response(serializer.data)
