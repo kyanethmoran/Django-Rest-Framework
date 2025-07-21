@@ -222,3 +222,10 @@ class BlogsView(generics.ListCreateAPIView):
 class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
+
+#for primary key based operations to BlogDetailView and CommentDetailView
+class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
+    pass 
+
+class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
+    pass 
