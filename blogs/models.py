@@ -11,7 +11,7 @@ class Blog(models.Model):
 #create Comment Model
 class Comment(models.Model):
     #create realtionship between blog and comments as each blog can have many comments
-    blog = models.ForeignKey(Blog, on_delete=models.CASCADE) #if blog is deleted then comment gets deleted
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE, related_name='comments') #if blog is deleted then comment gets deleted
     comment = models.TextField()
 
     def __str__(self):
