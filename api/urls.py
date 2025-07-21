@@ -21,7 +21,12 @@ urlpatterns = [
     #for working with viewsets we need routers
     path('', include(router.urls)),
 
+    #non primary key based url pattern for Blogs and Comments
     path('blogs/',views.BlogsView.as_view()),
     path('comments/',views.CommentsView.as_view()),
+
+    #primary key based url pattern for Blogs and Comments
+    path('blogs/<int:pk>/', views.BlogDetailView.as_view()),
+    path('comments/<int:pk>/', views.CommentDetailView.as_view())
 
 ]
