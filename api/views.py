@@ -216,8 +216,9 @@ class EmployeeViewset(viewsets.ModelViewSet):
 #-----------------------------------------------------------------------------------------------------------
 
 class BlogsView(generics.ListCreateAPIView):
-    queryset = Blog.objects.all
+    queryset = Blog.objects.all()
     serializer_class = BlogSerializer
 
 class CommentsView(generics.RetrieveUpdateDestroyAPIView):
-    pass
+    queryset = Comment.objects()
+    serializer_class = CommentSerializer
