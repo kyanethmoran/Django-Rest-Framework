@@ -11,6 +11,9 @@ from employees.models import Employee
 from django.http import Http404
 #for using mixins with employee and employee detail
 from rest_framework import mixins, generics, viewsets
+#for Blogs and Comments
+from blogs.models import Blog, Comment
+from blogs.serializers import BlogSerializer, CommentSerializer
 
 
 # Create your views here.
@@ -210,3 +213,11 @@ class EmployeeViewset(viewsets.ViewSet):
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+#-----------------------------------------------------------------------------------------------------------
+
+class BlogsView(generics.ListCreateAPIView):
+    queryset = Blog.objects.all
+    serializer_class = BlogSerializer
+
+class CommentsView(generics.RetrieveUpdateDestroyAPIView):
+    pass

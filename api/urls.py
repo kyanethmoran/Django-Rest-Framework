@@ -19,5 +19,9 @@ urlpatterns = [
     # path('employees/<int:pk>/', views.EmployeeDetail.as_view())
 
     #for working with viewsets we need routers
-    path('', include(router.urls))
+    path('', include(router.urls)),
+
+    path('blogs/',views.BlogsView.as_view()),
+    path('comments/',views.CommentsView.as_view()),
+
 ]
