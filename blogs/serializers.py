@@ -8,6 +8,8 @@ class CommentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class BlogSerializer(serializers.ModelSerializer):
+    #need to pass the comments to nest the serializers
+    comments = CommentSerializer(many = True, read_only= True)
     class Meta:
         model = Blog
         fields = '__all__'
