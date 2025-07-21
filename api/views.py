@@ -225,7 +225,11 @@ class CommentsView(generics.ListCreateAPIView):
 
 #for primary key based operations to BlogDetailView and CommentDetailView
 class BlogDetailView(generics.RetrieveUpdateDestroyAPIView):
-    pass 
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
+    lookup_field = 'pk'
 
 class CommentDetailView(generics.RetrieveUpdateDestroyAPIView):
-    pass 
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+    lookup_field = 'pk'
