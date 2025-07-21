@@ -14,6 +14,8 @@ from rest_framework import mixins, generics, viewsets
 #for Blogs and Comments
 from blogs.models import Blog, Comment
 from blogs.serializers import BlogSerializer, CommentSerializer
+#override the global pagination for Employees with the custom pagination
+from .paginations import CustomPagination
 
 
 # Create your views here.
@@ -213,6 +215,8 @@ class EmployeeViewset(viewsets.ViewSet):
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    #override global pagination with custom pagination
+    pagination_class = CustomPagination
 #-----------------------------------------------------------------------------------------------------------
 #for BlogsView and CommentsView
 class BlogsView(generics.ListCreateAPIView):
