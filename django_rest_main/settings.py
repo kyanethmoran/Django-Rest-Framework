@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'api',
     'employees',
     'blogs',
-    'django-filters',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
