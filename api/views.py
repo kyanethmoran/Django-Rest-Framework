@@ -16,6 +16,8 @@ from blogs.models import Blog, Comment
 from blogs.serializers import BlogSerializer, CommentSerializer
 #override the global pagination for Employees with the custom pagination
 from .paginations import CustomPagination
+#override the glodal filter
+from employees.filters import EmployeeFilter
 
 
 # Create your views here.
@@ -217,7 +219,11 @@ class EmployeeViewset(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     #override global pagination with custom pagination
     pagination_class = CustomPagination
-    filterset_fields = ['designation']
+    #this is for global filtering
+    # filterset_fields = ['designation']
+    #this is for the custom filter class we created to override the global filter
+    filterset_class = EmployeeFilter
+    
 #-----------------------------------------------------------------------------------------------------------
 #for BlogsView and CommentsView
 class BlogsView(generics.ListCreateAPIView):
