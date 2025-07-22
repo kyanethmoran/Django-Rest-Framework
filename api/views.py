@@ -19,6 +19,7 @@ from .paginations import CustomPagination
 #override the glodal filter
 from employees.filters import EmployeeFilter
 from rest_framework.filters import SearchFilter
+from rest_framework.filters import OrderingFilter
 
 
 # Create your views here.
@@ -230,11 +231,12 @@ class EmployeeViewset(viewsets.ModelViewSet):
 class BlogsView(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
-    filter_backends = [SearchFilter]
+    filter_backends = [SearchFilter, OrderingFilter]
     #the search fields comes from the blog model
     #use a carrot to search for the item that STARTS with the search param
     #example '^blog_title' returns only blogs that start with what was searched
     search_fields = ['blog_title', 'blog_body']
+    ordering_fields = ['id']
 
 class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
