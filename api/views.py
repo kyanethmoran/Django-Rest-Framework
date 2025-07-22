@@ -232,6 +232,8 @@ class BlogsView(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
     filter_backends = [SearchFilter]
     #the search fields comes from the blog model
+    #use a carrot to search for the item that STARTS with the search param
+    #exmaple '^blog_title' returns only blogs that start with what was searched
     search_fields = ['blog_title', 'blog_body']
 
 class CommentsView(generics.ListCreateAPIView):
