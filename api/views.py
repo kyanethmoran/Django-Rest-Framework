@@ -232,7 +232,7 @@ class BlogsView(generics.ListCreateAPIView):
     serializer_class = BlogSerializer
     filter_backends = [SearchFilter]
     #the search fields comes from the blog model
-    search_fields = ['blog_title']
+    search_fields = ['blog_title', 'blog_body']
 
 class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
