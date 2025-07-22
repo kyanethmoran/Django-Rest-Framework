@@ -18,6 +18,7 @@ from blogs.serializers import BlogSerializer, CommentSerializer
 from .paginations import CustomPagination
 #override the glodal filter
 from employees.filters import EmployeeFilter
+from rest_framework.filters import SearchFilter
 
 
 # Create your views here.
@@ -229,6 +230,9 @@ class EmployeeViewset(viewsets.ModelViewSet):
 class BlogsView(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
     serializer_class = BlogSerializer
+    filter_backends = [SearchFilter]
+    #the search fields comes from the blog model
+    search_fields = ['blog_title']
 
 class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
