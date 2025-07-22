@@ -236,7 +236,7 @@ class BlogsView(generics.ListCreateAPIView):
     #use a carrot to search for the item that STARTS with the search param
     #example '^blog_title' returns only blogs that start with what was searched
     search_fields = ['blog_title', 'blog_body']
-    ordering_fields = ['id']
+    ordering_fields = ['id', 'blog_title']
 
 class CommentsView(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
