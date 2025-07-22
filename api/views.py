@@ -217,6 +217,7 @@ class EmployeeViewset(viewsets.ModelViewSet):
     serializer_class = EmployeeSerializer
     #override global pagination with custom pagination
     pagination_class = CustomPagination
+    filterset_fields = ['designation']
 #-----------------------------------------------------------------------------------------------------------
 #for BlogsView and CommentsView
 class BlogsView(generics.ListCreateAPIView):
