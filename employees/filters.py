@@ -6,7 +6,7 @@ class EmployeeFilter(django_filters.FilterSet):
     #case insensitive (good for lower or upper case format of the desired lookup field)
     designation = django_filters.CharFilter(field_name='designation', lookup_expr= 'iexact')
     emp_name = django_filters.CharFilter(field_name= 'emp_name', lookup_expr= 'iexact')
-    id = django_filters.RangeFilter(field_name= 'id')
+    id = django_filters.NumberFilter(field_name= 'id')
     
 
     class Meta:
